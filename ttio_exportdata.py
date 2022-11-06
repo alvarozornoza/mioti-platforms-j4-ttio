@@ -2,7 +2,7 @@ import csv
 import requests
 import json
 
-THING_TOKEN = 'AVTUyiaDsEOL1k3nR3eZAAX8UliynLXZVKVsgYddfcU'
+THING_TOKEN = ''
 RESOURCE_KEY = 'temperature'
 LIMIT = 100
 START_DATE = '2022-01-01T00:00:00.000Z'
