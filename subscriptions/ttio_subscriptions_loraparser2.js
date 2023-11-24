@@ -26,22 +26,37 @@ function main(params, callback){
         var subject = "Alerta, puerta abierta";
         var text = "El sensor está instalado y la puerta acaba de ser abierta";
         
-        email(
-            {
-                service: 'SendGrid',
-                auth: {
-                    api_key: SENDGRID_API_KEY
-                }
-            },
-            {
-                from: 'alvarozu@faculty.mioti.es',
-                to: 'alvarozu@faculty.mioti.es',
-                subject: subject,
-                text: text
-            }
-        );
+        // email(
+        //     {
+        //         service: 'SendGrid',
+        //         auth: {
+        //             api_key: SENDGRID_API_KEY
+        //         }
+        //     },
+        //     {
+        //         from: 'alvarozu@faculty.mioti.es',
+        //         to: 'alvarozu@faculty.mioti.es',
+        //         subject: subject,
+        //         text: text
+        //     }
+        // );
+
+        var body = 
+        {
+            subject: subject,
+            text: text
+        }
+        httpRequest({
+            host: 'webhook.site',
+            path: '/94dc8591-b72b-403d-8ccd-f3d93489a046',
+            method: 'POST',
+            secure: false,
+            headers: {'Content-Type': 'application/json'}
+        },body, function(err, res) {
+            if (err) callback(result)
+            return callback(result)
+        });
     }
-    callback(null, result);
 }
 
 function parsePayloadWS301(payload){

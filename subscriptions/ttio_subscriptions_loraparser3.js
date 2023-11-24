@@ -33,22 +33,38 @@ function main(params, callback){
                 var subject = "Alerta, puerta abierta";
                 var text = "La puerta acaba de ser abierta";
                 
-                email(
+                // email(
+                //     {
+                //         service: 'SendGrid',
+                //         auth: {
+                //             api_key: SENDGRID_API_KEY
+                //         }
+                //     },
+                //     {
+                //         from: 'alvarozu@faculty.mioti.es',
+                //         to: 'alvarozu@faculty.mioti.es',
+                //         subject: subject,
+                //         text: text
+                //     }
+                // );
+                var body = 
                     {
-                        service: 'SendGrid',
-                        auth: {
-                            api_key: SENDGRID_API_KEY
-                        }
-                    },
-                    {
-                        from: 'alvarozu@faculty.mioti.es',
-                        to: 'alvarozu@faculty.mioti.es',
                         subject: subject,
                         text: text
                     }
-                );
-            }
-            callback(null, result);
+                httpRequest({
+                    host: 'webhook.site',
+                    path: '/94dc8591-b72b-403d-8ccd-f3d93489a046',
+                    method: 'POST',
+                    secure: false,
+                    headers: {'Content-Type': 'application/json'}
+                },body, function(err, res) {
+                    if (err) callback(result)
+                    return callback(result)
+                });
+            } else{
+                callback(null, result);
+            }    
         });
     } else{
         callback(null, result);

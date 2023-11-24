@@ -28,18 +28,37 @@ function checkDeviceActivity(thing, callback){
 
 function sendAlert(thing, activity, callback){
     if(activity) return callback(null, thing);
-    email(
-        {
-            service: 'SendGrid',
-            auth: {
-                api_key: SENDGRID_API_KEY
-            }
-        },
-        {
-            from: 'alvarozu@faculty.mioti.es',
-            to: 'alvarozu@faculty.mioti.es',
-            subject: 'Dispositivo desconectado' + thing.description.name,
-            text: 'Dispositivo desconectado' +  thing.description.name
-        }
-    );
+    // email(
+    //     {
+    //         service: 'SendGrid',
+    //         auth: {
+    //             api_key: SENDGRID_API_KEY
+    //         }
+    //     },
+    //     {
+    //         from: 'alvarozu@faculty.mioti.es',
+    //         to: 'alvarozu@faculty.mioti.es',
+    //         subject: 'Dispositivo desconectado' + thing.description.name,
+    //         text: 'Dispositivo desconectado' +  thing.description.name
+    //     }
+    // );
+
+    var subject = "Dispositivo desconectado" + thing.description.name;
+    var text = 'Dispositivo desconectado' +  thing.description.name;
+
+    var body = 
+    {
+        subject: subject,
+        text: text
+    }
+    httpRequest({
+        host: 'webhook.site',
+        path: '/94dc8591-b72b-403d-8ccd-f3d93489a046',
+        method: 'POST',
+        secure: false,
+        headers: {'Content-Type': 'application/json'}
+    },body, function(err, res) {
+        if (err) callback(null)
+        return callback(null)
+    });
 }
