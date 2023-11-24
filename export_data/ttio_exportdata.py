@@ -3,8 +3,8 @@ import requests
 import json
 
 THING_TOKEN = ''
-START_DATE = '2022-01-01T00:00:00.000Z'
-END_DATE = '2022-12-31T23:59:59.999Z'
+START_DATE = '2023-01-01T00:00:00.000Z'
+END_DATE = '2023-12-31T23:59:59.999Z'
 
 def getResourceKeys():
     url = f'https://api.thethings.io/v2/things/{THING_TOKEN}/resources'
